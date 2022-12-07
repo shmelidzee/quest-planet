@@ -1,10 +1,10 @@
 @charset "UTF-8";
-/*!
+/*/
 * Start Bootstrap - Coming Soon v6.0.6 (https://startbootstrap.com/theme/coming-soon)
 * Copyright 2013-2022 Start Bootstrap
 * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-coming-soon/blob/master/LICENSE)
 */
-/*!
+/*/
  * Bootstrap v5.1.3 (https://getbootstrap.com/)
  * Copyright 2011-2021 The Bootstrap Authors
  * Copyright 2011-2021 Twitter, Inc.
@@ -87,6 +87,12 @@ body {
   background-color: var(--bs-body-bg);
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  position: fixed;
+
+}
+
+html{
+  overflow: hidden;
 }
 
 hr {
@@ -11421,4 +11427,64 @@ video.bg-video {
     right: 2.5rem;
     width: auto;
   }
+}
+
+.background-dialog{
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+  background-image: url("../assets/img/bg-main.jpg");
+  -webkit-background-size: cover;
+  background-size: cover;
+  background-attachment: fixed;
+
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.dialog__wrapper{
+  max-width: 720px;
+  margin-top: 10%;
+  margin-left: 10%;
+}
+
+.dialog_bg{
+
+  width: 100%;
+  max-width: 720px;
+  padding: 20px 43px;
+  background: linear-gradient(248.84deg, #0D2633 -24.51%, #254260 98.79%);
+  border: 3px solid #FB8BC3;
+  border-radius: 37px;
+}
+
+.player1{
+  margin-top: 15px;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 29px;
+  color: #ABF3F8;
+}
+
+.player1:nth-child(1){
+  margin-top: 0;
+}
+
+
+.player2{
+  margin-top: 15px;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 29px;
+  color: #FF9292;
+}
+
+.dialog_buttons{
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-around;
 }
