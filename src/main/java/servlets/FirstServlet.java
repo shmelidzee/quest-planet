@@ -2,7 +2,7 @@ package servlets;
 
 
 import users.User;
-import users.Users;
+import repositories.Users;
 
 
 import javax.servlet.ServletConfig;
@@ -13,10 +13,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 
 @WebServlet(name = "FirstServlet", value = "/start")
 public class FirstServlet extends HttpServlet {
+
+    Logger log = LogManager.getLogManager().getLogger(String.valueOf(FirstServlet.class));
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
@@ -36,7 +40,6 @@ public class FirstServlet extends HttpServlet {
                 }
             }
         }
-
         session.setAttribute("name", name);
         getServletContext().getRequestDispatcher("/dialog.jsp").forward(req, resp);
     }

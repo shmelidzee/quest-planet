@@ -11294,17 +11294,17 @@ body {
   height: 100%;
   position: relative;
 }
-body:before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  background-color: #465D95;
-  opacity: 0.2;
-  z-index: 1;
-}
+/*body:before {*/
+/*  content: "";*/
+/*  position: fixed;*/
+/*  top: 0;*/
+/*  left: 0;*/
+/*  height: 100%;*/
+/*  width: 100%;*/
+/*  background-color: #465D95;*/
+/*  opacity: 0.2;*/
+/*  z-index: 1;*/
+/*}*/
 
 video.bg-video {
   position: fixed;
@@ -11484,7 +11484,19 @@ video.bg-video {
 }
 
 .dialog_buttons{
+  position: center;
   margin-top: 10px;
   display: flex;
   justify-content: space-around;
+}
+
+.btn-dialog{
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 29px;
+  color: #ABF3F8;
+  background: linear-gradient(248.84deg, #0D2633 -24.51%, #254260 98.79%);
+  border: 3px solid #FB8BC3;
+  border-radius: 15px;
+  padding: 10px 20px;
 }
