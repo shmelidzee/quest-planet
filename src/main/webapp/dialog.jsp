@@ -1,4 +1,9 @@
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.Date" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -25,8 +30,8 @@
 <body class="background-dialog">
 
 
-
-<img src="./assets/img/statistics_button.png" alt="stats" data-toggle="modal" data-target="#exampleModalLong" class="d-flex ml-auto stats_button">
+<img src="./assets/img/statistics_button.png" alt="stats" data-toggle="modal" data-target="#exampleModalLong"
+     class="d-flex ml-auto stats_button">
 
 <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
      aria-hidden="true">
@@ -39,8 +44,13 @@
                 </button>
             </div>
             <div class="modal-body">
-                ...
+                <p>Ваше имя: <%=session.getAttribute("userName")%></p>
+                <p>Ваш ID: <%=session.getAttribute("userId")%></p>
+                <p>Дата создания аккаунта: <%=session.getAttribute("userSignUp")%></p>
+                <p>Вы выиграли: <%=session.getAttribute("userWin")%> раз</p>
+                <p>Ва проиграли: <%=session.getAttribute("userLoss")%> раз</p>
             </div>
+
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
             </div>
@@ -48,21 +58,27 @@
     </div>
 </div>
 
+<%--<%--%>
+<%--    final ArrayList<String> list = (ArrayList<String>) request.getAttribute("list");--%>
+<%--%>--%>
 <div class="dialog__wrapper">
-
     <div class="dialog_bg">
+
+
         <p class="player1">Л1:</p>
         <p class="player2">Л2:</p>
+        <p class="author">Author:</p>
     </div>
+
+
 
     <div class="dialog_buttons">
         <form action="dialog" method="post">
-            <button class="btn-dialog" name="first-button" value="1">Кнопка 1</button>
-            <button class="btn-dialog" name="second-button" value="2">Кнопка 2</button>
+            <button class="btn-dialog" name="first-button" value="1"><%= request.getAttribute("answer1") %></button>
+            <button class="btn-dialog" name="second-button" value="2"><%= request.getAttribute("answer2") %></button>
         </form>
     </div>
 </div>
-
 
 </body>
 </html>

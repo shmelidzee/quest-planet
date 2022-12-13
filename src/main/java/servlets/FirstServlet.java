@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.Date;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
@@ -20,7 +21,6 @@ import java.util.logging.Logger;
 @WebServlet(name = "FirstServlet", value = "/start")
 public class FirstServlet extends HttpServlet {
 
-    Logger log = LogManager.getLogManager().getLogger(String.valueOf(FirstServlet.class));
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
@@ -39,9 +39,15 @@ public class FirstServlet extends HttpServlet {
                     user = Users.listUsers.get(i);
                 }
             }
+        } else {
+            user = new User(name, session.getId(), session.getCreationTime());
         }
-        session.setAttribute("name", name);
-        getServletContext().getRequestDispatcher("/dialog.jsp").forward(req, resp);
+
+
+        session.setAttribute("user", user);
+        DialogServlet dialogServlet = new DialogServlet();
+        dialogServlet.doGet(req, resp);
+        //getServletContext().getRequestDispatcher("/dialog.jsp").forward(req, resp);
     }
 
 }

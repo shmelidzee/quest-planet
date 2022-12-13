@@ -3,8 +3,8 @@ package users;
 public class User {
     private String name;
     private String id;
-    private int loss;
-    private int win;
+    private int loss = 0;
+    private int win = 0;
     private long dateSignUp;
 
     public User(String name, String id, long dateSignUp) {

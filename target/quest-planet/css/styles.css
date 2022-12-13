@@ -665,9 +665,15 @@ body.background-dialog:before{
   color: #ABF3F8;
 }
 
-.player1:nth-child(1){
-  margin-top: 0;
+.author{
+  margin-top: 15px;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 29px;
+  color: #ffffff;
 }
+
+
 
 
 .player2{
@@ -677,6 +683,8 @@ body.background-dialog:before{
   line-height: 29px;
   color: #FF9292;
 }
+
+
 
 .dialog_buttons{
   position: center;
