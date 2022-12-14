@@ -30,7 +30,7 @@
 <body class="background-dialog">
 
 
-<img src="./assets/img/statistics_button.png" alt="stats" data-toggle="modal" data-target="#exampleModalLong"
+<img src="assets/img/statistics_button.png" alt="stats" data-toggle="modal" data-target="#exampleModalLong"
      class="d-flex ml-auto stats_button">
 
 <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
@@ -58,12 +58,8 @@
     </div>
 </div>
 
-<%--<%--%>
-<%--    final ArrayList<String> list = (ArrayList<String>) request.getAttribute("list");--%>
-<%--%>--%>
 <div class="dialog__wrapper">
     <div class="dialog_bg">
-
 
         <p class="player1">Л1:</p>
         <p class="player2">Л2:</p>
@@ -74,8 +70,8 @@
 
     <div class="dialog_buttons">
         <form action="dialog" method="post">
-            <button class="btn-dialog" name="first-button" value="1"><%= request.getAttribute("answer1") %></button>
-            <button class="btn-dialog" name="second-button" value="2"><%= request.getAttribute("answer2") %></button>
+            <button class="btn-dialog" name="button-choose" value="1"><%= request.getAttribute("answer1") %></button>
+            <button class="btn-dialog" name="button-choose" value="2"><%= request.getAttribute("answer2") %></button>
         </form>
     </div>
 </div>

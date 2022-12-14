@@ -47,7 +47,6 @@ public class FirstServlet extends HttpServlet {
         session.setAttribute("user", user);
         DialogServlet dialogServlet = new DialogServlet();
         dialogServlet.doGet(req, resp);
-        //getServletContext().getRequestDispatcher("/dialog.jsp").forward(req, resp);
     }
 
 }

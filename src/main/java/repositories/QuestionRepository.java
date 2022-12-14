@@ -1,16 +1,17 @@
 package repositories;
 
+import com.sun.deploy.net.HttpRequest;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import servlets.LossServlet;
 import servlets.WinServlet;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.FileReader;
-import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class QuestionRepository {
 
@@ -22,7 +23,7 @@ public class QuestionRepository {
     public static String question;
     public static ArrayList<String> sentences;
 
-    public static void getQuestion(int idQuestion){
+    public static void getQuestion(long idQuestion, HttpServletRequest req, HttpServletResponse resp){
         clearValues();
         File config = null;
         URL resource = QuestionRepository.class.getClassLoader().getResource("question.json");
@@ -39,14 +40,14 @@ public class QuestionRepository {
             JSONObject questions = (JSONObject) jsonObject.get("questions");
             JSONObject inQuestion = (JSONObject) questions.get(String.valueOf(idQuestion));
 
-            if (inQuestion.values().contains("win")) {
-                WinServlet winServlet = new WinServlet();
-                winServlet.getServletContext().getRequestDispatcher("/win");
+            if (inQuestion.containsValue("win")) {
+                req.getRequestDispatcher("/win").forward(req, resp);
+                return;
             }
-            if (inQuestion.values().contains("loss")) {
+            if (inQuestion.containsValue("loss")) {
                 parseSentences(inQuestion);
-                LossServlet lossServlet = new LossServlet();
-                lossServlet.getServletContext().getRequestDispatcher("/loss");
+                req.getRequestDispatcher("/loss").forward(req, resp);
+                return;
             }
             winIdQuestion = (Long) inQuestion.get("idWinQuestion");
             lossIdQuestion = (Long) inQuestion.get("idLossQuestion");

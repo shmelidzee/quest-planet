@@ -1,16 +1,19 @@
 package users;
 
+import java.sql.Date;
+
 public class User {
     private String name;
     private String id;
     private int loss = 0;
     private int win = 0;
-    private long dateSignUp;
+    private Date dateSignUp;
 
     public User(String name, String id, long dateSignUp) {
         this.name = name;
         this.id = id;
-        this.dateSignUp = dateSignUp;
+        this.dateSignUp = new Date(dateSignUp);
+
     }
 
     public String getName() {
@@ -27,23 +30,21 @@ public class User {
         return loss;
     }
 
-    public void setLoss(int loss) {
-        this.loss = loss;
+    public void setLoss() {
+        this.loss++;
     }
 
     public int getWin() {
         return win;
     }
 
-    public void setWin(int win) {
-        this.win = win;
+    public void setWin() {
+        this.win++;
     }
 
-    public long getDateSignUp() {
+    public Date getDateSignUp() {
         return dateSignUp;
     }
-
-    public void setDateSignUp(long dateSignUp) {
-        this.dateSignUp = dateSignUp;
-    }
 }
+
+
