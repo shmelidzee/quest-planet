@@ -6,21 +6,17 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-
     <title>Quest planet</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico"/>
     <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.gstatic.com"/>
-
     <link href="https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap"
           rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&amp;display=swap"
           rel="stylesheet"/>
-
     <link href="css/styles.css" rel="stylesheet"/>
-
 
 </head>
 <body>
@@ -31,8 +27,8 @@
 <div class="masthead">
     <div class="masthead-content text-white">
         <div class="container-fluid px-4 px-lg-0">
-            <h1 class="fst-italic lh-1 mb-4">Приветсвуем Вас, капитан!</h1>
-            <p class="mb-5">Представьтесь и мы начнем наше путешествие!</p>
+            <h1 class="fst-italic lh-1 mb-4">Приветствуем Вас, капитан!</h1>
+            <p class="mb-5">Представтесь и мы начнем наше путешествие!</p>
 
             <form action="start" method="post" id="contactForm" data-sb-form-api-token="API_TOKEN">
                 <div class="row input-group-newsletter">
@@ -53,11 +49,9 @@
                 </div>
 
             </form>
-
         </div>
     </div>
 </div>
-
 
 <div class="social-icons">
     <div class="d-flex flex-row flex-lg-column justify-content-center align-items-center h-100 mt-lg-0">
@@ -70,5 +64,5 @@
     </div>
 </div>
 
-
 </body>
+</html>

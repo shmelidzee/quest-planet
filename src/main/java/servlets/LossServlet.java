@@ -1,5 +1,6 @@
 package servlets;
 
+import repositories.QuestionRepository;
 import users.User;
 
 import javax.servlet.ServletConfig;
@@ -17,14 +18,15 @@ public class LossServlet extends HttpServlet {
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
     }
-
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         User user = (User) session.getAttribute("user");
         user.setLoss();
-        //переход на страницу проигравшего
-        req.getRequestDispatcher("/hello.jsp").forward(req, resp);
-
+        QuestionRepository.sentences.remove("loss");
+        req.setAttribute("list", QuestionRepository.sentences);
+        session.removeAttribute("userLoss");
+        session.setAttribute("userLoss", user.getLoss());
+        req.getRequestDispatcher("/loss.jsp").forward(req, resp);
     }
 }

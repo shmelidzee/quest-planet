@@ -1,8 +1,6 @@
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="java.util.Date" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE html>
 <html lang="ru">
@@ -28,7 +26,6 @@
             crossorigin="anonymous"></script>
 </head>
 <body class="background-dialog">
-
 
 <img src="assets/img/statistics_button.png" alt="stats" data-toggle="modal" data-target="#exampleModalLong"
      class="d-flex ml-auto stats_button">
@@ -60,13 +57,12 @@
 
 <div class="dialog__wrapper">
     <div class="dialog_bg">
+        <c:forEach var="message" items="${list}">
+            <p class="player1">${message}</p>
+        </c:forEach>
 
-        <p class="player1">Л1:</p>
-        <p class="player2">Л2:</p>
-        <p class="author">Author:</p>
+        <p class="author"><%=request.getAttribute("question")%></p>
     </div>
-
-
 
     <div class="dialog_buttons">
         <form action="dialog" method="post">

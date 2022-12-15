@@ -1,5 +1,6 @@
 package servlets;
 
+import repositories.QuestionRepository;
 import users.User;
 
 import javax.servlet.ServletConfig;
@@ -17,13 +18,15 @@ public class WinServlet extends HttpServlet {
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
     }
-
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         User user = (User) session.getAttribute("user");
         user.setWin();
-        //переход на страницу победителя
-        req.getRequestDispatcher("/hello.jsp").forward(req, resp);
+        QuestionRepository.sentences.remove("win");
+        req.setAttribute("list", QuestionRepository.sentences);
+        session.removeAttribute("userWin");
+        session.setAttribute("userWin", user.getWin());
+        req.getRequestDispatcher("/win.jsp").forward(req, resp);
     }
 }

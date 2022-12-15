@@ -1,6 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html lang="ru">
@@ -25,7 +24,7 @@
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
 </head>
-<body class="background-dialog">
+<body class="background-dialog-loss">
 
 <img src="assets/img/statistics_button.png" alt="stats" data-toggle="modal" data-target="#exampleModalLong"
      class="d-flex ml-auto stats_button">
@@ -56,19 +55,17 @@
 </div>
 
 <div class="dialog__wrapper">
-    <div class="dialog_bg">
+    <div class="dialog_bg-loss">
         <c:forEach var="message" items="${list}">
-            <p class="player1">${message}</p>
+            <p class="player2">${message}</p>
         </c:forEach>
-
-        <p class="author"><%=request.getAttribute("question")%></p>
     </div>
 
-    <div class="dialog_buttons">
-        <form action="dialog" method="post">
-            <button class="btn-dialog" name="button-choose" value="1"><%= request.getAttribute("answer1") %></button>
-            <button class="btn-dialog" name="button-choose" value="2"><%= request.getAttribute("answer2") %></button>
+    <div class="dialog_buttons-loss">
+        <form action="last" method="post">
+            <button class="btn-dialog-loss" name="button-choose" value="1">Начать заново!</button>
         </form>
+        <button class="btn-dialog-loss" onclick="return location.href = 'https://www.youtube.com/'">Посмотреть ютубчик!</button>
     </div>
 </div>
 

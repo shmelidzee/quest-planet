@@ -1,10 +1,7 @@
 package repositories;
 
-import com.sun.deploy.net.HttpRequest;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import servlets.LossServlet;
-import servlets.WinServlet;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -41,6 +38,7 @@ public class QuestionRepository {
             JSONObject inQuestion = (JSONObject) questions.get(String.valueOf(idQuestion));
 
             if (inQuestion.containsValue("win")) {
+                parseSentences(inQuestion);
                 req.getRequestDispatcher("/win").forward(req, resp);
                 return;
             }

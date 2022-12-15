@@ -1,27 +1,19 @@
 package servlets;
 
-import com.sun.media.jfxmediaimpl.HostUtils;
 import repositories.QuestionRepository;
 import users.User;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
-import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Date;
 
 @WebServlet(name = "DialogServlet", value = "/dialog")
 public class DialogServlet extends HttpServlet {
-
-
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         QuestionRepository.getQuestion(1, req, resp);
@@ -39,7 +31,6 @@ public class DialogServlet extends HttpServlet {
         session.setAttribute("userSignUp", user.getDateSignUp());
         req.getRequestDispatcher("/dialog.jsp").forward(req, resp);
     }
-
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         long nextIdQuestion = 0;
@@ -57,7 +48,6 @@ public class DialogServlet extends HttpServlet {
         req.setAttribute("question", QuestionRepository.question);
         req.setAttribute("list", QuestionRepository.sentences);
         req.getRequestDispatcher("/dialog.jsp").forward(req, resp);
-
     }
 
     @Override
