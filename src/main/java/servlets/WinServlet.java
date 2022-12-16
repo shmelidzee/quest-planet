@@ -1,5 +1,7 @@
 package servlets;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import repositories.QuestionRepository;
 import users.User;
 
@@ -14,6 +16,7 @@ import java.io.IOException;
 
 @WebServlet(name = "WinServlet", value = "/win")
 public class WinServlet extends HttpServlet {
+    private static Logger LOGGER = LogManager.getLogger(WinServlet.class);
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
@@ -27,6 +30,7 @@ public class WinServlet extends HttpServlet {
         req.setAttribute("list", QuestionRepository.sentences);
         session.removeAttribute("userWin");
         session.setAttribute("userWin", user.getWin());
+        LOGGER.info("Forward with win");
         req.getRequestDispatcher("/win.jsp").forward(req, resp);
     }
 }

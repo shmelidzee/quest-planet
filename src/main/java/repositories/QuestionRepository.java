@@ -1,17 +1,25 @@
 package repositories;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+import servlets.DialogServlet;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
 
 public class QuestionRepository {
-
+    private static Logger LOGGER = LogManager.getLogger(QuestionRepository.class);
     public static long winIdQuestion;
     public static long lossIdQuestion;
     public static long correctAnswer;
@@ -20,18 +28,17 @@ public class QuestionRepository {
     public static String question;
     public static ArrayList<String> sentences;
 
-    public static void getQuestion(long idQuestion, HttpServletRequest req, HttpServletResponse resp){
+    public static void getQuestion(long idQuestion, HttpServletRequest req, HttpServletResponse resp) {
         clearValues();
         File config = null;
         URL resource = QuestionRepository.class.getClassLoader().getResource("question.json");
         try {
-        config = new File(resource.toURI());
-        }catch (Throwable throwable){
-            System.out.println("exception");
+            config = new File(resource.toURI());
+        } catch (URISyntaxException exception) {
+            LOGGER.warn(String.format("Exception with URI, %s", exception.getMessage()));
         }
         JSONParser jsonParser = new JSONParser();
-        try {
-            FileReader reader = new FileReader(config);
+        try (FileReader reader = new FileReader(config)) {
             Object obj = jsonParser.parse(reader);
             JSONObject jsonObject = (JSONObject) obj;
             JSONObject questions = (JSONObject) jsonObject.get("questions");
@@ -39,11 +46,13 @@ public class QuestionRepository {
 
             if (inQuestion.containsValue("win")) {
                 parseSentences(inQuestion);
+                LOGGER.info(String.format("Parse sentences and forward win :%s", req));
                 req.getRequestDispatcher("/win").forward(req, resp);
                 return;
             }
             if (inQuestion.containsValue("loss")) {
                 parseSentences(inQuestion);
+                LOGGER.info(String.format("Parse sentences and forward loss :%s", req));
                 req.getRequestDispatcher("/loss").forward(req, resp);
                 return;
             }
@@ -55,12 +64,14 @@ public class QuestionRepository {
             question = (String) inQuestion.get("question");
             parseSentences(inQuestion);
 
-        } catch (Throwable throwable) {
-            throwable.printStackTrace();
+        } catch (IOException | ServletException | ParseException exception) {
+            LOGGER.warn(String.format("Mistake! %s", exception.getStackTrace()));
         }
+
     }
 
     private static void clearValues() {
+        LOGGER.info("clear values");
         winIdQuestion = 0;
         lossIdQuestion = 0;
         correctAnswer = 0;
@@ -81,5 +92,6 @@ public class QuestionRepository {
                 exits = false;
             }
         }
+        LOGGER.info("success parse sentences");
     }
 }
